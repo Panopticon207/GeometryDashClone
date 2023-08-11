@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Obstacle
+  - LevelPartEnder
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - BackGround
   - Player
   - Ground
-  - 
+  - PostProcessing
   - 
   - 
   - 

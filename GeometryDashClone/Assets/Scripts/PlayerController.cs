@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
-    [SerializeField]
-    private float jumpforce = 10;
-
     public bool isGrounded;
     [SerializeField]
     private float lerpSpeed = 300;
@@ -19,10 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float fallMultiplier = 300;
     Vector2 gravity;
-
+    [SerializeField]
+    private SpawnManager spawnManager;
 
     private void Start()
     {
+        Time.timeScale = 1;
         gravity = new Vector2 (0, -Physics2D.gravity.y);
         playerRb = GetComponent<Rigidbody2D>();
         
@@ -62,6 +63,22 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(rotation.x, rotation.y, Mathf.Round((rotation.z / 90)) * 90);
             return;
         }
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Game Over");
+            GameOver();
+        }
+        if (collision.gameObject.CompareTag("LevelPartEnder"))
+        {
+            LevelPartEnder levelEnd = collision.gameObject.GetComponent<LevelPartEnder>();
+            if (!levelEnd.isLevelPartEnd)
+            {
+                levelEnd.isLevelPartEnd = true;
+                spawnManager.SpawnLevelPart();               
+            }
+            
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -80,5 +97,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        //Invoke("RestartLevel", 1f);
+        RestartLevel();
+        Time.timeScale = 0;      
+    }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
