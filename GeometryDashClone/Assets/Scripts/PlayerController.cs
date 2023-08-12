@@ -73,9 +73,15 @@ public class PlayerController : MonoBehaviour
             if (!portal.isModeChanged)
             {
                 portal.isModeChanged = true;
+                PlayerType playerTypeToSpawn = portal.playerTypeToSpawn;
+                PlayerTypeLibrary playerTypeLibrary = Resources.Load<PlayerTypeLibrary>("PlayerTypes");
+                PlayerController playerController = playerTypeLibrary.GetPrefabFromItemType(playerTypeToSpawn);
+                Instantiate(playerController, portal.transform.position, portal.transform.rotation);
+                Destroy(gameObject);
             }
+
         }
-    }
+    }   
 
     public virtual void ChangeLevelPart(Collider2D collision)
     {
