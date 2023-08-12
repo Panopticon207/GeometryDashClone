@@ -23,8 +23,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpPower = 300;
     [SerializeField]
-    private float fallMultiplier = 300;
-    [SerializeField]
     private SpawnManager spawnManager;
     public Transform playerTransform;
     public BoxCollider2D playerCollider;
@@ -57,6 +55,15 @@ public class PlayerController : MonoBehaviour
             playerTransform.rotation = Quaternion.Euler(playerTransform.eulerAngles.x, playerTransform.eulerAngles.y, playerTransform.eulerAngles.z - lerpSpeed * Time.deltaTime);
         }
 
+        if (Input.GetKey(KeyCode.Space) && playerType == PlayerType.SpaceShipPlayer)
+        {
+            clickPlayerRb.gravityScale = -4;
+        }
+        else
+        {
+            clickPlayerRb.gravityScale = 4;
+        }
+
         //if (clickPlayerRb.velocity.y < 0)
         //{
         //    clickPlayerRb.velocity -= gravity * fallMultiplier * Time.deltaTime;
@@ -67,14 +74,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (clickPlayerCollider.gameObject.CompareTag("Ground"))
-        //{
-        //    isGrounded = true;
-        //    Vector3 rotation = transform.eulerAngles;
-        //    transform.rotation = Quaternion.Euler(rotation.x, rotation.y, Mathf.Round((rotation.z / 90)) * 90);
-        //    return;
-        //}
-
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("Game Over");
@@ -87,27 +86,19 @@ public class PlayerController : MonoBehaviour
             {
                 levelEnd.isLevelPartEnd = true;
                 spawnManager.SpawnLevelPart();               
+            }           
+        }
+
+        if (collision.gameObject.CompareTag("Portal"))
+        {
+            Portal portal = collision.gameObject.GetComponent<Portal>();
+            if (!portal.isModeChanged)
+            {
+                portal.isModeChanged = true;
+                SwitchPlayerMode();
             }
-            
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;            
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-
     public void GameOver()
     {
         //Invoke("RestartLevel", 1f);
@@ -123,7 +114,10 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         float extraHeight = 0.1f;
-        RaycastHit2D raycastHit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight,groundLayerMask);
+        //RaycastHit2D raycastHit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight,groundLayerMask);
+        Vector2 playerPosition = playerCollider.bounds.center;
+        Vector2 boxSize = new Vector2(playerCollider.bounds.extents.x * 2, extraHeight);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerPosition, boxSize, 0f, Vector2.down, playerCollider.bounds.extents.y + extraHeight, groundLayerMask);
         Color rayColor;
         if (raycastHit.collider != null)
         {
