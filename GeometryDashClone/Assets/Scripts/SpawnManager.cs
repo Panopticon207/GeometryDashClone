@@ -19,6 +19,7 @@ public class SpawnManager : MonoBehaviour
         instance = this;
     }
 
+
     private void Start()
     {
         levelPartIndex = -1;
@@ -29,6 +30,7 @@ public class SpawnManager : MonoBehaviour
     {
         levelPartIndex++;
         LevelPart levelPart = currentLevel.levelParts[levelPartIndex];
+        transform.position = levelPart.transform.position;
         Instantiate(levelPart.gameObject, transform.position, transform.rotation);
     }
 

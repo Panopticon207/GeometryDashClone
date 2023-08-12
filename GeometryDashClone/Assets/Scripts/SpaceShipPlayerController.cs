@@ -6,7 +6,9 @@ public class SpaceShipPlayerController : PlayerController
 {
     public override void ControlPlayer()
     {
-        if (Input.GetKey(KeyCode.Space) && playerType == PlayerType.SpaceShipPlayer)
+        transform.rotation = Quaternion.Euler(0f, 0f, playerRb.velocity.y * 2);
+
+        if (Input.GetKey(KeyCode.Space))
         {
             playerRb.gravityScale = -4;
         }
