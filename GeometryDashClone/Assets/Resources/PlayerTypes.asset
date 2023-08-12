@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb48d22c5eab3742b185925ca2cedde, type: 3}
-  m_Name: LevelPart1
+  m_Script: {fileID: 11500000, guid: 4d91429beede1024184b539ceee3b731, type: 3}
+  m_Name: PlayerTypes
   m_EditorClassIdentifier: 
-  levelPart: {fileID: 1633002916695776658, guid: 35e8479ec72d4654f8211fa519554fd9, type: 3}
+  playerTypes: []

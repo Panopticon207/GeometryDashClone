@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
+using static SpawnManager;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,100 +16,91 @@ public class PlayerController : MonoBehaviour
         SpaceShipPlayer
     }
     public PlayerType playerType;
-    //ClickPlayerParameters
-    public Rigidbody2D clickPlayerRb;
-    public bool isGrounded;
+    //PlayerParameters
+    public Rigidbody2D playerRb;
     [SerializeField]
     private float lerpSpeed = 300;
     [SerializeField]
     private float jumpPower = 300;
-    [SerializeField]
     private SpawnManager spawnManager;
     public Transform playerTransform;
     public BoxCollider2D playerCollider;
 
-    public Transform clickPlayerTransform;
 
     //RaycastParameters
     [SerializeField]
     private LayerMask groundLayerMask;
 
-    //SpaceShipParameters
-    [SerializeField]
-    private Transform spaceShipTransform;
-
-
-    Vector2 gravity;
-
-
-    private void Start()
+    public virtual void SetParameters()
     {
         Time.timeScale = 1;
-        gravity = new Vector2 (0, -Physics2D.gravity.y);
-        playerCollider = playerTransform.GetComponent<BoxCollider2D> ();
+        playerCollider = playerTransform.GetComponent<BoxCollider2D>();
+        playerRb = playerTransform.GetComponent<Rigidbody2D>();
+    }
+    public virtual void SpacePlayerControl()
+    {
+        if (Input.GetKey(KeyCode.Space) && playerType == PlayerType.SpaceShipPlayer)
+        {
+            playerRb.gravityScale = -4;
+        }
+        else
+        {
+            playerRb.gravityScale = 4;
+        }
     }
 
-    private void Update()
+    public virtual void Roll()
     {
-        IsGrounded();
-
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && playerType == PlayerType.ClickPlayer)
-        {
-            clickPlayerRb.velocity = new Vector2 (clickPlayerRb.velocity.x, jumpPower);
-        }
-
         if (!IsGrounded() && playerType == PlayerType.ClickPlayer)
         {
             playerTransform.rotation = Quaternion.Euler(playerTransform.eulerAngles.x, playerTransform.eulerAngles.y, playerTransform.eulerAngles.z - lerpSpeed * Time.deltaTime);
         }
-
-        if (Input.GetKey(KeyCode.Space) && playerType == PlayerType.SpaceShipPlayer)
-        {
-            clickPlayerRb.gravityScale = -4;
-        }
-        else
-        {
-            clickPlayerRb.gravityScale = 4;
-        }
-
-        //if (clickPlayerRb.velocity.y < 0)
-        //{
-        //    clickPlayerRb.velocity -= gravity * fallMultiplier * Time.deltaTime;
-        //}
-
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void ControlPlayer()
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && playerType == PlayerType.ClickPlayer)
         {
-            Debug.Log("Game Over");
-            GameOver();
+            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpPower);
         }
+    }
+
+    public virtual void InteractWithPortal(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Portal"))
+        {
+            Portal portal = collision.gameObject.GetComponent<Portal>();
+            if (!portal.isModeChanged)
+            {
+                portal.isModeChanged = true;
+            }
+        }
+    }
+
+    public virtual void ChangeLevelPart(Collider2D collision)
+    {
         if (collision.gameObject.CompareTag("LevelPartEnder"))
         {
             LevelPartEnder levelEnd = collision.gameObject.GetComponent<LevelPartEnder>();
             if (!levelEnd.isLevelPartEnd)
             {
                 levelEnd.isLevelPartEnd = true;
-                spawnManager.SpawnLevelPart();               
-            }           
-        }
-
-        if (collision.gameObject.CompareTag("Portal"))
-        {
-            Portal portal = collision.gameObject.GetComponent<Portal>();
-            if (!portal.isModeChanged)
-            {
-                SwitchPlayerMode();
-                portal.isModeChanged = true;                
+                SpawnManager.instance.SpawnLevelPart();
             }
         }
     }
-    public void GameOver()
+
+    public virtual void CrashObstacle(Collider2D collision)
     {
-        //Invoke("RestartLevel", 1f);
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Game Over");
+            GameOver();
+        }
+    }
+
+    public virtual void GameOver()
+    {
         RestartLevel();
         Time.timeScale = 0;      
     }
@@ -118,7 +110,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public bool IsGrounded()
+    public virtual bool IsGrounded()
     {
         float extraHeight = 0.1f;
         //RaycastHit2D raycastHit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight,groundLayerMask);
@@ -142,25 +134,4 @@ public class PlayerController : MonoBehaviour
         return raycastHit.collider != null; 
     }
 
-    public void SwitchPlayerMode()
-    {
-        if (playerType == PlayerType.ClickPlayer)
-        {
-            playerType = PlayerType.SpaceShipPlayer;
-            playerTransform = spaceShipTransform;
-            playerCollider = playerTransform.GetComponent<BoxCollider2D>();
-            spaceShipTransform.gameObject.SetActive(true);
-            clickPlayerTransform.gameObject.SetActive(false);
-            return;
-        }
-
-        if (playerType == PlayerType.SpaceShipPlayer)
-        {
-            playerType = PlayerType.ClickPlayer;
-            playerTransform = clickPlayerTransform;
-            clickPlayerTransform.gameObject.SetActive(true);
-            spaceShipTransform.gameObject.SetActive(false);
-            return;
-        }
-    }
 }

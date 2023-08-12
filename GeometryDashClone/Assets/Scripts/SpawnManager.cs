@@ -5,8 +5,19 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public Level currentLevel;
-    public int levelPartIndex;
+    public  Level currentLevel;
+    public  int levelPartIndex;
+    public static SpawnManager instance;
+
+    private void Awake()
+    {
+        if (instance != null) 
+        { 
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
 
     private void Start()
     {
@@ -18,7 +29,7 @@ public class SpawnManager : MonoBehaviour
     {
         levelPartIndex++;
         LevelPart levelPart = currentLevel.levelParts[levelPartIndex];
-        Instantiate(levelPart.gameObject, transform.position,transform.rotation);
+        Instantiate(levelPart.gameObject, transform.position, transform.rotation);
     }
 
 }
