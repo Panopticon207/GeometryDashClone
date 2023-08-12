@@ -17,13 +17,11 @@ public class ProgressBar : MonoBehaviour
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        
-        
     }
 
     private void Start()
     {
-        currentLevel = SpawnManager.instance.currentLevel.name;
+        currentLevel = SpawnManager.Instance.currentLevel.name;
         level = Resources.Load<Level>(currentLevel);
         CalculateLevelDistance();
         slider.maxValue = totalLevelDistance;
@@ -35,12 +33,10 @@ public class ProgressBar : MonoBehaviour
         {
             slider.value += fillSpeed * Time.deltaTime;
         }
+
         playerProgress += moveSpeed * Time.deltaTime;
         slider.value = playerProgress;
-
     }
-
-
 
     public void CalculateLevelDistance()
     {

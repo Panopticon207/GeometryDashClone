@@ -27,11 +27,6 @@ public class SpaceShipPlayerController : PlayerController
         }
     }
 
-    private void Start()
-    {
-        SetParameters();
-    }
-
     private void Update()
     {
         ControlPlayer();

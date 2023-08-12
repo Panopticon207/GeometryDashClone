@@ -58,7 +58,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 7807460496717393374}
   endPoint: {fileID: 2327271080297872595}
-  levelDistance: 0
+  levelDistance: 49.41
 --- !u!1 &2327271080297872595
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.88665664
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.88665664
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -411,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3031901651099656855, guid: 6159b429b993c0347b1519a14d63bcf0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 3031901651099656855, guid: 6159b429b993c0347b1519a14d63bcf0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.88665664
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -529,6 +529,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6517469856765299222}
     m_Modifications:
+    - target: {fileID: -2838489551061240908, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
+      propertyPath: obstacleType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -547,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.062
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 707316986088602536, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_LocalPosition.z
