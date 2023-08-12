@@ -27,9 +27,16 @@ public class PlayerController : MonoBehaviour
     public Transform playerTransform;
     public BoxCollider2D playerCollider;
 
+    public Transform clickPlayerTransform;
+
     //RaycastParameters
     [SerializeField]
     private LayerMask groundLayerMask;
+
+    //SpaceShipParameters
+    [SerializeField]
+    private Transform spaceShipTransform;
+
 
     Vector2 gravity;
 
@@ -94,8 +101,8 @@ public class PlayerController : MonoBehaviour
             Portal portal = collision.gameObject.GetComponent<Portal>();
             if (!portal.isModeChanged)
             {
-                portal.isModeChanged = true;
                 SwitchPlayerMode();
+                portal.isModeChanged = true;                
             }
         }
     }
@@ -140,10 +147,20 @@ public class PlayerController : MonoBehaviour
         if (playerType == PlayerType.ClickPlayer)
         {
             playerType = PlayerType.SpaceShipPlayer;
+            playerTransform = spaceShipTransform;
+            playerCollider = playerTransform.GetComponent<BoxCollider2D>();
+            spaceShipTransform.gameObject.SetActive(true);
+            clickPlayerTransform.gameObject.SetActive(false);
+            return;
         }
+
         if (playerType == PlayerType.SpaceShipPlayer)
         {
-            playerType = PlayerType.SpaceShipPlayer;
+            playerType = PlayerType.ClickPlayer;
+            playerTransform = clickPlayerTransform;
+            clickPlayerTransform.gameObject.SetActive(true);
+            spaceShipTransform.gameObject.SetActive(false);
+            return;
         }
     }
 }
