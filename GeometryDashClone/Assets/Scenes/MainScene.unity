@@ -313,7 +313,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 502467134}
+      - m_Target: {fileID: 1352356416}
         m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1
@@ -478,7 +478,6 @@ GameObject:
   - component: {fileID: 502467131}
   - component: {fileID: 502467133}
   - component: {fileID: 502467132}
-  - component: {fileID: 502467134}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -547,18 +546,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502467130}
   m_CullTransparentMesh: 1
---- !u!114 &502467134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502467130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61b1a877312fff4f97cbbc2f7c3cf3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &591811462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,6 +1500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1352356412}
+  - component: {fileID: 1352356416}
   - component: {fileID: 1352356415}
   - component: {fileID: 1352356414}
   - component: {fileID: 1352356413}
@@ -1599,7 +1587,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 502467134}
+      - m_Target: {fileID: 1352356416}
         m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 1
@@ -1649,6 +1637,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352356411}
   m_CullTransparentMesh: 1
+--- !u!114 &1352356416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352356411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61b1a877312fff4f97cbbc2f7c3cf3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 502467130}
+  pausePanelIsOpen: 0
 --- !u!114 &1362223106 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2231695655833948490, guid: 8b72e401171b91f47b1687e3992c1aa5, type: 3}
@@ -1868,6 +1870,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2231695655833948490, guid: 8b72e401171b91f47b1687e3992c1aa5, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2231695655833948490, guid: 8b72e401171b91f47b1687e3992c1aa5, type: 3}
       propertyPath: crushSound
       value: 
@@ -2663,7 +2669,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 502467134}
+      - m_Target: {fileID: 1352356416}
         m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1

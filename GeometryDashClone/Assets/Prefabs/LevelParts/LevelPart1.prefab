@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 707316986088602538, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 707316986088602550, guid: 77a14e78ff5a64248bcf07726f24d91d, type: 3}
       propertyPath: m_Name
       value: TriangleObstacle (1)

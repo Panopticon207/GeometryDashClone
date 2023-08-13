@@ -12,7 +12,7 @@ using static UnityEngine.ParticleSystem;
 public class PlayerController : MonoBehaviour
 {
     public PlayerType playerType;
-
+    public float speed;
 
     [Header("Player Parameters")]
     [SerializeField] protected float lerpSpeed = 300;

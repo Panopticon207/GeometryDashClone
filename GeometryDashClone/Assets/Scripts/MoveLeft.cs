@@ -7,6 +7,11 @@ public class MoveLeft : MonoBehaviour
 
     public float speed;
 
+    private void Start()
+    {
+        speed = SpawnManager.Instance.currentPlayer.speed;
+    }
+
     private void Update()
     {
 

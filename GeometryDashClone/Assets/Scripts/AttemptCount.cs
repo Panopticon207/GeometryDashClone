@@ -35,8 +35,8 @@ public class AttemptCount : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("attempcount", 1);
-            attemptCount = 1;
-            attemptCountText.text = attemptCount.ToString();           
+            attemptCountText.text = PlayerPrefs.GetInt("attempcount").ToString();
+            attemptCount = 2;
         }
 
         transform.DOScale(new Vector3(1, 1,1),1f).OnComplete(() =>

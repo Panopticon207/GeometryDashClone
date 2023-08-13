@@ -8,17 +8,13 @@ public class SpaceShipPlayerController : PlayerController
     {
         transform.rotation = Quaternion.Euler(0f, 0f, playerRb.velocity.y * 2);
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
         {
             playerRb.gravityScale = -4;
-            //if (!particle.isPlaying)
-            //    particle.Play();
         }
         else
         {
             playerRb.gravityScale = 4;
-            //if (particle.isPlaying)
-            //    particle.Stop();
         }
     }
 
@@ -27,6 +23,7 @@ public class SpaceShipPlayerController : PlayerController
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Ground"))
         {
             Debug.Log("GameOver");
+            SoundManager.instance.PlaySound(crushSound, 0.5f);
             GameOver();
         }
     }

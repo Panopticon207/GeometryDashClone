@@ -303,6 +303,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleType: 1
   currentPlayer: {fileID: 0}
+  lerpSpeed: 5
+  movingColumnEndPoint: 0
+  endPoint: 0
 --- !u!212 &707316986088602551
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -371,10 +374,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5019405, y: -0.28345257}
-  - {x: -0.3379116, y: 0.03153032}
-  - {x: -0.0007224083, y: 0.57339424}
-  - {x: 0.49591923, y: -0.2915265}
+  - {x: -0.6829827, y: -0.40127367}
+  - {x: -0.41262746, y: 0.08900404}
+  - {x: -0.0064697266, y: 0.7975417}
+  - {x: 0.68558264, y: -0.39785284}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -647,7 +650,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4256408417548971539}
   - component: {fileID: 875286698551123644}
-  - component: {fileID: 2913970225216217062}
   m_Layer: 10
   m_Name: TriangleBorder
   m_TagString: Obstacle
@@ -722,27 +724,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &2913970225216217062
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730305983202522407}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.54896927, y: -0.3232463}
-  - {x: -0.3379116, y: 0.03153032}
-  - {x: 0.0028953552, y: 0.660217}
-  - {x: 0.49591923, y: -0.29876167}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0

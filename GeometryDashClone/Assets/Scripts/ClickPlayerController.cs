@@ -61,8 +61,11 @@ public class ClickPlayerController : PlayerController
     {
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
+            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpPower);            
+        }
+        if (Input.GetMouseButtonDown(0) && IsGrounded())
+        {
             playerRb.velocity = new Vector2(playerRb.velocity.x, jumpPower);
-            
         }
     }
 

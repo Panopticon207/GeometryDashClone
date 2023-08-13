@@ -5574,6 +5574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 0
+  speed: 10
   lerpSpeed: 350
   jumpPower: 11
   groundLayerMask:

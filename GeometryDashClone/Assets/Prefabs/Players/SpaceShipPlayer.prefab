@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 1
+  speed: 10
   lerpSpeed: 300
   jumpPower: 300
   groundLayerMask:
