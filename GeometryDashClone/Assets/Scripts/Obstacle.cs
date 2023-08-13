@@ -8,6 +8,8 @@ public class Obstacle : MonoBehaviour
     public ObstacleType obstacleType;
     public PlayerController currentPlayer;
     public float lerpSpeed = 5f;
+    public float movingColumnEndPoint;
+    public float endPoint;
     public enum ObstacleType
     {
         Square,
@@ -15,7 +17,8 @@ public class Obstacle : MonoBehaviour
         Platform,
         SmallTriangle,
         HighGround,
-        Ground
+        Ground,
+        MovingColumn,
     }
 
     private void Start()
@@ -28,14 +31,9 @@ public class Obstacle : MonoBehaviour
         if (gameObject == null)
             return;
 
-        //if (transform.position.x < -20)
-        //{
-        //    DestroyImmediate(gameObject);
-        //    return;
-        //}
-
         if (currentPlayer == null)
             return;
+
         if (transform.position.x - currentPlayer.transform.position.x < 10)
         {
             StartAnimation();
@@ -51,6 +49,10 @@ public class Obstacle : MonoBehaviour
         else if (obstacleType == ObstacleType.Triangle)
         {
             transform.DOMoveY(-0.1f, 0.55f).SetEase(Ease.OutQuad);
+        }
+        else if (obstacleType == ObstacleType.MovingColumn)
+        {
+            transform.DOMoveY(endPoint, .5f).SetEase(Ease.OutQuad);
         }
         
     }

@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 using static SpawnManager;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected float jumpPower = 300;
     [Header("Raycast Parameters")]
     [SerializeField] protected LayerMask groundLayerMask;
+    [SerializeField] protected ParticleSystem particle;
 
 
     protected Rigidbody2D playerRb;
@@ -95,5 +97,10 @@ public class PlayerController : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public virtual void PlayPlayerParticle()
+    {
+
     }
 }

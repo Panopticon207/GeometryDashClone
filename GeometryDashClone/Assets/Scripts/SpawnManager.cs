@@ -33,6 +33,8 @@ public class SpawnManager : MonoBehaviour
     public void SpawnLevelPart()
     {
         levelPartIndex++;
+        if (levelPartIndex > currentLevel.levelParts.Count - 1)
+            return;
         if (previousLevel != null)
         {
             Destroy(previousLevel);

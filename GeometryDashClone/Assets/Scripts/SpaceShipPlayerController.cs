@@ -11,10 +11,14 @@ public class SpaceShipPlayerController : PlayerController
         if (Input.GetKey(KeyCode.Space))
         {
             playerRb.gravityScale = -4;
+            //if (!particle.isPlaying)
+            //    particle.Play();
         }
         else
         {
             playerRb.gravityScale = 4;
+            //if (particle.isPlaying)
+            //    particle.Stop();
         }
     }
 
@@ -38,4 +42,5 @@ public class SpaceShipPlayerController : PlayerController
         ChangeLevelPart(collision);
         InteractWithPortal(collision);
     }
+
 }
