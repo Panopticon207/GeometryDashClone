@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - LevelPartEnder
   - Portal
+  - LevelEnd
   layers:
   - Default
   - TransparentFX

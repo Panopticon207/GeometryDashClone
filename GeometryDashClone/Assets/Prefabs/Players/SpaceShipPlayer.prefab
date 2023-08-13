@@ -905,7 +905,8 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  particle: {fileID: 8576595812361723563}
+  moveParticle: {fileID: 8576595812361723563}
+  levelEndparticle: {fileID: 0}
   crushSound: {fileID: 8300000, guid: d720bca7ecb5f1c41bdc63f68b3116e8, type: 3}
 --- !u!1 &7204798006704526842
 GameObject:

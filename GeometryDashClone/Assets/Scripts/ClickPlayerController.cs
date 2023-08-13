@@ -21,6 +21,7 @@ public class ClickPlayerController : PlayerController
         CrashObstacle(collision);
         ChangeLevelPart(collision);
         InteractWithPortal(collision);
+        FinishLevel(collision);
     }
 
     public void Roll()
@@ -67,20 +68,20 @@ public class ClickPlayerController : PlayerController
 
     public override void PlayPlayerParticle()
     {
-        particle.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        particle.transform.localPosition = new Vector2(0,0);
+        moveParticle.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        moveParticle.transform.localPosition = new Vector2(0,0);
 
         if (IsGrounded())
         {
             //particle.gameObject.SetActive(true);
-            if (!particle.isPlaying)
-                particle.Play();
+            if (!moveParticle.isPlaying)
+                moveParticle.Play();
         }
         else
         {
             //particle.gameObject.SetActive(false);
-            if (particle.isPlaying)
-                particle.Stop();
+            if (moveParticle.isPlaying)
+                moveParticle.Stop();
         }
     }
 }

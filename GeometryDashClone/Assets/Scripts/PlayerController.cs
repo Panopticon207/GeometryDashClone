@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     [Header("Raycast Parameters")]
     [SerializeField] protected LayerMask groundLayerMask;
     [Header("ParticleSystem Parameters")]
-    [SerializeField] protected ParticleSystem particle;
+    [SerializeField] protected ParticleSystem moveParticle;
+    [SerializeField] protected ParticleSystem levelEndparticle;
     [Header("Sound Parameters")]
     [SerializeField] protected AudioClip crushSound;
 
@@ -106,5 +107,21 @@ public class PlayerController : MonoBehaviour
     public virtual void PlayPlayerParticle()
     {
 
+    }
+    public virtual void FinishLevel(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("LevelEnd"))
+        {
+            levelEndparticle.gameObject.SetActive(true);
+            if (!levelEndparticle.isPlaying)               
+                levelEndparticle.Play();
+            Time.timeScale = 0.5f;
+            Invoke("BackToMainMenu", 3f);
+        }
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
