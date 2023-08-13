@@ -51,7 +51,7 @@ ParticleSystem:
   looping: 1
   prewarm: 1
   playOnAwake: 1
-  useUnscaledTime: 1
+  useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
     serializedVersion: 2
@@ -5579,6 +5579,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   particle: {fileID: 2613999610468036807}
+  crushSound: {fileID: 0}
 --- !u!61 &2231695655833948502
 BoxCollider2D:
   m_ObjectHideFlags: 0

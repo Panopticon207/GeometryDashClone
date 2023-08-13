@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected float jumpPower = 300;
     [Header("Raycast Parameters")]
     [SerializeField] protected LayerMask groundLayerMask;
+    [Header("ParticleSystem Parameters")]
     [SerializeField] protected ParticleSystem particle;
+    [Header("Sound Parameters")]
+    [SerializeField] protected AudioClip crushSound;
 
 
     protected Rigidbody2D playerRb;
     protected Transform playerTransform;
     protected BoxCollider2D playerCollider;
-
 
     public enum PlayerType
     {
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            SoundManager.instance.PlaySound(crushSound, 0.5f);
             Debug.Log("Game Over");
             GameOver();
         }
@@ -90,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void GameOver()
     {
+        
         RestartLevel();
         Time.timeScale = 0;      
     }
