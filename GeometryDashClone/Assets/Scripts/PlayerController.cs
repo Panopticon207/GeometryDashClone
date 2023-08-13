@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public virtual void PlayPlayerParticle()
